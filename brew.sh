@@ -22,3 +22,12 @@ bundle install
 # Install older version
 brew info postgresql (or brew switch postgresql <TAB>)
 brew search postgresql # check if older version available as tap
+
+
+# We first need a deep clone of the Homebrew repo. This may take a while: git -C $(brew --repo homebrew/core) fetch --unshallow
+brew log icu4c`
+# track down a commit that references 62.1; 575eb4b does the trick.
+cd $(brew --repo homebrew/core)
+git checkout 575eb4b -- Formula/icu4c.rb
+brew uninstall  --ignore-dependencies icu4c
+brew install icu4c
